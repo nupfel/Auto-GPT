@@ -52,7 +52,7 @@ def eleven_labs_speech(text, voice_index=0):
         with mutex_lock:
             with open("speech.mpeg", "wb") as f:
                 f.write(response.content)
-            playsound("speech.mpeg", True)
+            os.system("mpg123 -q speech.mpeg")
             os.remove("speech.mpeg")
         return True
     else:
@@ -83,7 +83,7 @@ def gtts_speech(text):
     tts = gtts.gTTS(text)
     with mutex_lock:
         tts.save("speech.mp3")
-        playsound("speech.mp3", True)
+        os.system("mpg123 -q speech.mp3")
         os.remove("speech.mp3")
 
 
